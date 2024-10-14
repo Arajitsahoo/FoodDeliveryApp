@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import userContext from "../utils/userContext";
+import { useSelector } from "react-redux";
+import appStore from "../utils/Store";
 
 const Header = () => {
 
@@ -10,6 +12,9 @@ const Header = () => {
     const status = useOnlineStatus();
     const {loggedinUser} = useContext(userContext);
     // console.log(loggedinUser)
+    
+    const cartItems = useSelector((store)=> store.cart.items);
+    console.log(cartItems);
 
     return <div className="header">
       <div className="logo">
@@ -23,7 +28,7 @@ const Header = () => {
           <li><Link  to="/">Home</Link></li>
           <li><Link to="/about">About</Link></li>
           <li><Link to="/contactUs">Contact Us</Link></li>
-          <li><Link to="/Cart">Cart</Link></li>
+          <li className="bold"><Link to="/Cart">Cart - ({cartItems.length} Items)</Link></li>
           <li> <button onClick={()=>{
            logbtn ==="login"? setLogbtn("logout") : setLogbtn("login");
             // console.log(logbtn)

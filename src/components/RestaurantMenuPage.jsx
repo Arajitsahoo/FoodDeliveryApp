@@ -23,7 +23,7 @@ const RestaurantInfo = () => {
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
   // console.log(resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
-//   console.log(catagories);
+  //   console.log(catagories);
 
   return (
     <div>
@@ -37,7 +37,7 @@ const RestaurantInfo = () => {
             key={items?.card?.card?.title}
             catagories={items}
             showItems={index === showIndex && true}
-            setShowIndex={()=>setShowIndex(index)}
+            setShowIndex={() => setShowIndex(index)}
           />
         ))}
       </div>

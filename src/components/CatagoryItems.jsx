@@ -1,8 +1,15 @@
 import React from "react";
 import { CDN_Links } from "../utils/const";
+import { addItems } from "../utils/CartSlice";
+import { useDispatch } from "react-redux";
 
 const CatagoryItems = ({ items }) => {
-//   console.log(items);
+  // console.log(items);
+  const dispatch = useDispatch();
+
+  const handleCart = (c) =>{
+     dispatch(addItems(c));
+  }
   return (
     <div>
       <div>
@@ -14,7 +21,11 @@ const CatagoryItems = ({ items }) => {
             >
               <div>
                 <div className="font-bold">{c?.card?.info?.name}</div>
-                <div className="font-semibold">₹{c?.card?.info?.price / 100}</div>
+                <div className="font-semibold">
+                  ₹
+                  {c?.card?.info?.price / 100 ||
+                    c?.card?.info?.defaultPrice / 100}
+                </div>
               </div>
               <div>
                 <img
@@ -22,7 +33,9 @@ const CatagoryItems = ({ items }) => {
                   alt=""
                   className="w-40 h-30"
                 />
-                <button className="relative text-green-600 font-bold border-gray-50 bg-gray-50 shadow-lg bottom-6 left-6 px-10 py-2 rounded-lg">ADD</button>
+                <button className="relative text-green-600 font-bold border-gray-50 bg-gray-50 shadow-lg bottom-6 left-6 px-10 py-2 rounded-lg" onClick={()=>handleCart(c)}>
+                  ADD
+                </button>
               </div>
             </div>
           );
